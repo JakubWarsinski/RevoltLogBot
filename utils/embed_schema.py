@@ -39,3 +39,5 @@ async def generate_message_description(channel : TextChannel, message : Message,
     )
 
     await channel.send(embed=embed)
+
+    print("Generated Message")
