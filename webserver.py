@@ -9,9 +9,8 @@ def home():
     return "Revolt Bot online"
 
 def run():
-    port = int(os.environ.get("PORT", 8080))
-    app.run(host="0.0.0.0", port=port)
+    port = int(os.getenv("PORT", 8080))
+    app.run(host="0.0.0.0", port=port, debug=False, use_reloader=False)
 
 def keep_alive():
-    t = Thread(target=run)
-    t.start()
+    Thread(target=run, daemon=True).start()
