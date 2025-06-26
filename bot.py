@@ -71,10 +71,14 @@ class Client(revolt.Client):
 
 
 async def main():
+    await asyncio.gather(
+        webserver.start_web(),
+        run_bot()
+    )
+
+async def run_bot():
     async with client_session() as session:
         client = Client(session, TOKEN)
         await client.start()
-
-webserver.keep_alive()
 
 asyncio.run(main())
